@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1 id="titulo">Calculadora D&D</h1>
+    <table>
+        <tr>
+            <th>Características</th>
+            <th>Puntuación</th>
+            <th>Modificador</th>
+        </tr>
+        <tr>
+            <td>Fuerza</td>
+            <td><span id="Str"></span></td>
+            <td>(<span id="modStr"></span>)</td>
+            <td><input type="button" value="-" onclick="lessStat(0);" /></td>
+            <td><input type="button" value="+" onclick="moreStat(0);" /></td>
+        </tr>
+        <tr>
+            <td>Destreza</td>
+            <td><span id="Dex"></span></td>
+            <td>(<span id="modDex"></span>)</td>
+            <td><input type="button" value="-" onclick="lessStat(1);" /></td>
+            <td><input type="button" value="+" onclick="moreStat(1);" /></td>
+        </tr>
+        <tr>
+            <td>Constitución</td>
+            <td><span id="Con"></span></td>
+            <td>(<span id="modCon"></span>)</td>
+            <td><input type="button" value="-" onclick="lessStat(2);" /></td>
+            <td><input type="button" value="+" onclick="moreStat(2);" /></td>
+        </tr>
+        <tr>
+            <td>Inteligencia</td>
+            <td><span id="Int"></span></td>
+            <td>(<span id="modInt"></span>)</td>
+            <td><input type="button" value="-" onclick="lessStat(3);" /></td>
+            <td><input type="button" value="+" onclick="moreStat(3);" /></td>
+        </tr>
+        <tr>
+            <td>Sabiduría</td>
+            <td><span id="Sab"></span></td>
+            <td>(<span id="modSab"></span>)</td>
+            <td><input type="button" value="-" onclick="lessStat(4);" /></td>
+            <td><input type="button" value="+" onclick="moreStat(4);" /></td>
+        </tr>
+        <tr>
+            <td>Carisma</td>
+            <td><span id="Cha"></span></td>
+            <td>(<span id="modCha"></span>)</td>
+            <td><input type="button" value="-" onclick="lessStat(5);" /></td>
+            <td><input type="button" value="+" onclick="moreStat(5);" /></td>
+        </tr>
+        <tr>
+            <td>Puntos: <span id="points"></span></td>
+        </tr>
+    </table>
+
+</body>
+
+<footer>rogmed | 2021</footer>
+
+<script>
+    // JavaScript
+
+    var points = 27;
+    document.getElementById("points").innerHTML = points;
+
+    var abilityArray = [
+        ["Fuerza", "Str", 8, "modStr", -1],
+        ["Destreza", "Dex", 8, "modDex", -1],
+        ["Constitución", "Con", 8, "modCon", -1],
+        ["Inteligencia", "Int", 8, "modInt", -1],
+        ["Sabiduría", "Sab", 8, "modSab", -1],
+        ["Carisma", "Cha", 8, "modCha", -1],
+    ];
+    for (var i = 0; i < abilityArray.length; i++) {
+        document.getElementById(abilityArray[i][1]).innerHTML = abilityArray[i][2];
+        abilityArray[i][4] = Math.round((abilityArray[i][2] - 10) / 2);
+        document.getElementById(abilityArray[i][3]).innerHTML = abilityArray[i][4];
+    }
+
+
+    function lessStat(i) {
+        if (abilityArray[i][2] > 8) {
+            abilityArray[i][2]--;
+            abilityArray[i][4] = Math.round((abilityArray[i][2] - 10.1) / 2);
+            document.getElementById(abilityArray[i][1]).innerHTML = abilityArray[i][2];
+            document.getElementById(abilityArray[i][3]).innerHTML = abilityArray[i][4];
+            if (abilityArray[i][2] < 13) {
+                points++;
+            } else {
+                points = points + 2;
+            }
+            document.getElementById("points").innerHTML = points;
+        }
+
+    }
+
+    function moreStat(i) {
+        if (abilityArray[i][2] < 15) {
+            abilityArray[i][2]++;
+            abilityArray[i][4] = Math.round((abilityArray[i][2] - 10.1) / 2);
+            document.getElementById(abilityArray[i][1]).innerHTML = abilityArray[i][2];
+            document.getElementById(abilityArray[i][3]).innerHTML = abilityArray[i][4];
+            if (abilityArray[i][2] <= 13) {
+                points--;
+            } else if (abilityArray[i][2] <= 15) {
+                points = points - 2;
+            }
+            document.getElementById("points").innerHTML = points;
+        }
+
+    }
+
+</script>
+
+</html>
