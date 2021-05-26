@@ -1,4 +1,9 @@
 html,
+/*Desactiva zoom con doble tap en pantallas tactiles*/
+.disable-dbl-tap-zoom {
+  touch-action: manipulation;
+}
+
 body {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     margin: 0;
@@ -8,15 +13,20 @@ body {
   }
 
   #calculadora {
-    font-size: larger;
+    font-size: x-large;
     text-align: left;
     display: inline-block;
-    margin-left: 10em;
-    margin-right: 10em;
+    margin-left: 1em;
+    margin-right: 1em;
+   
+  }
+
+  input[type="button"] {
+    font-size: x-large;
   }
 
   input[type="button"]:hover {
-    border:2px solid gray;
+    /* border:2px solid gray; */
     transform: scale(1.2);
     transition: 0.1s;
     z-index:10;
@@ -24,7 +34,7 @@ body {
 
   input[type="button"]:active {
     border:2px solid red;
-    transform: scale(1.4);
+    transform: scale(1.3);
     z-index:10;
   }
 
@@ -34,4 +44,8 @@ body {
     background-color:lightslategrey;
     text-align: center;
     padding: 0.5em;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
   }
